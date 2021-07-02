@@ -1,0 +1,13 @@
+.Flex-container{
+    padding-top: 20%;
+}
+
+.btn,
+.waves-effect{
+    border-radius: 12px;
+    margin: 5px;
+}
+
+.row{
+    font-size: 2.3vw;
+}

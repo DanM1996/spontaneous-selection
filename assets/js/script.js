@@ -91,3 +91,21 @@ $.ajax({
         // This time, we do not end up here!
     }
 });
+//Button function
+var displaybtn = function(){
+  var button = document.createElement('button');
+  button.innerHTML = 'Click for Movies';
+  button.onclick = function(){
+  };
+  
+  document.getElementById('Moviebtn').appendChild(button);
+};
+
+
+document.getElementById("Moviebtn").addEventListener("click", displaybtn);
+
+function displaybtn2(){
+    FindFoodDrinks.style.background = "red";
+}
+
+document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);

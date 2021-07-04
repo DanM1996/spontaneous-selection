@@ -11,3 +11,18 @@
 .row{
     font-size: 2.3vw;
 }
+
+.image-container{
+    width: 200px;
+    height: 80px;
+}
+
+.materialboxed{
+    width: 100%;
+    height: 350px;
+    margin-bottom: 10px;
+}
+
+.brand-logo{
+    align-items: center;
+}

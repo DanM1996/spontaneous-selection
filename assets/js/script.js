@@ -79,11 +79,15 @@ function renderRandomBar(randomBar) {
 
 $.ajax({
     type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId",
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&postalCode=44110",
     async: true,
     dataType: "json",
-    success: function (json) {
-        console.log(json);
+    success: function (data) {
+        // var randomnumber = getRandomNumber()
+        console.log(data)
+        console.log(data._embedded.events[0].name);
+        renderRandomEvent(data._embedded.events[0])
+        
         // Parse the response.
         // Do other things.
     },
@@ -91,3 +95,12 @@ $.ajax({
         // This time, we do not end up here!
     }
 });
+function renderRandomEvent(randomEvent) {
+    // console.log(randomEvent)
+    // var eventEl = $("<div>").addClass("random-event");
+    var ticketmasterUrl = $("<a href>")
+    console.log(randomEvent.url)
+    ticketmasterUrl.attr("src", "url")
+    // responseBarContainer.append(ticketmasterUrl)
+
+}

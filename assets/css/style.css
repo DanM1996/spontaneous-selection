@@ -1,5 +1,42 @@
-.Flex-container{
-    padding-top: 20%;
+.color-bar{
+    padding: 20px 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: rgba(193, 88, 88, 0.852);
+}
+
+.color-bar2{
+    padding: 20px 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: rgba(193, 88, 88, 0.852);
+}
+
+.row .col.s4 {
+    width: 33.3333333333%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+    font-size: medium;
+}
+
+.name-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+}
+
+.brand-name{
+  font-size: 25px;
+  font-weight: bold;
+  padding: 0 25px;
+  color: #14cfbd;
+  
 }
 
 .btn,
@@ -25,4 +62,10 @@
 
 .brand-logo{
     align-items: center;
+}
+
+@media only screen and (min-width: 993px){
+ .container {
+    width: 100%;
+ }
 }

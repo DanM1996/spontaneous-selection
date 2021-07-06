@@ -138,6 +138,7 @@ function displaybtn2(){
     FindFoodDrinks.style.background = "red";
 }
 
+
 document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 
 
@@ -146,3 +147,6 @@ document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2)
 document.getElementById("FindFoodDrinks").addEventListener("click", submitSearchFood);
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
+=======
+document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+

@@ -105,52 +105,52 @@ function renderRandomBar(randomBar) {
     responseBarContainer.append(randomBarUrl)
 }
 
-// function ticketmasterData(city, radiusInput){
-// $.ajax({
-//     type: "GET",
-//     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&radius=" + radiusInput,
-//     async: true,
-//     dataType: "json",
-//     success: function (data) {
-//         var randomnumber = getRandomNumber()
-//         console.log(data)
-//         console.log(data._embedded.events[randomnumber].name);
-//         renderRandomEvent(data._embedded.events[randomnumber])
+function ticketmasterData(city, radiusInput){
+$.ajax({
+    type: "GET",
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa",
+    async: true,
+    dataType: "json",
+    success: function (data) {
+        var randomnumber = getRandomNumber()
+        console.log(data)
+        console.log(data._embedded.events[randomnumber].name);
+        renderRandomEvent(data._embedded.events[randomnumber])
         
-//     },
-//     error: function (xhr, status, err) {
-//         // This time, we do not end up here!
-//     }
-// });
-// }
+    },
+    error: function (xhr, status, err) {
+        // This time, we do not end up here!
+    }
+});
+}
 // function that takes the user input for city and radius and has ticketmaster data meet those parameters
-// function searchEvent(){
-//     var city = document.querySelector("#location").value;
-//     var radius = document.querySelector("#miles").value;
-//     var miles = 0;
-//     if (radius > 25) {
-//         miles = 40000
-//     } else {
-//         miles = Math.floor(radius*1609.344);
-//     }
-//     var radiusInput = Math.round(miles/1000)*1000
+function searchEvent(){
+    var city = document.querySelector("#location").value;
+    var radius = document.querySelector("#miles").value;
+    var miles = 0;
+    if (radius > 25) {
+        miles = 40000
+    } else {
+        miles = Math.floor(radius*1609.344);
+    }
+    var radiusInput = Math.round(miles/1000)*1000
 
-//     ticketmasterData(city, radiusInput);
-// }
-// function renderRandomEvent(randomEvent) {
-//     console.log(randomEvent)
-//     var eventEl = $("<div>").addClass("random-event");
+    ticketmasterData(city, radiusInput);
+}
+function renderRandomEvent(randomEvent) {
+    console.log(randomEvent)
+    var eventEl = $("<div>").addClass("random-event");
 
-//     var eventSpan = $("<span>");
-//     console.log(randomEvent.name);
-//     eventSpan.text("Your Randomized Event: " + randomEvent.name);
-//     eventEl.append(eventSpan)
+    var eventSpan = $("<span>");
+    console.log(randomEvent.name);
+    eventSpan.text("Your Randomized Event: " + randomEvent.name);
+    eventEl.append(eventSpan)
 
-//     var ticketmasterUrl = $("<a href>")
-//     console.log(randomEvent.url)
-//     ticketmasterUrl.attr("src", "url")
-//     eventEl.append(ticketmasterUrl)
-// }
+    var ticketmasterUrl = $("<a href>")
+    console.log(randomEvent.url)
+    ticketmasterUrl.attr("src", "url")
+    eventEl.append(ticketmasterUrl)
+}
 //Button function
 var displaybtn = function(){
   var button = document.createElement('button');
@@ -180,3 +180,4 @@ document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 
 // document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 
+ticketmasterData();

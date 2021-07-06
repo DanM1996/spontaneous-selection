@@ -1,21 +1,10 @@
-<<<<<<< HEAD
-var ticketmasterEndDate = moment().add(7, 'days').format(" M/D/Y");
-console.log(ticketmasterEndDate);
-//generate random restraurant (referring to this as "food" cause easier to spell)
-var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&location=cleveland&radius=40000&limit=50";
-$.ajax({
-    url: myurl,
-    headers: {
-        'Authorization': 'Bearer N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx',
-    },
-=======
 function getYelpData(searchTerm, searchRadius, searchType){
     var myurl = ""
     if(searchType === "food"){
-        myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
     }
     if(searchType === "bar"){
-        myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "https://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
     }
     //generate random restraurant (referring to this as "food" cause easier to spell)
     
@@ -57,7 +46,6 @@ function submitSearchFood() {
     
     getYelpData(searchTerm, searchRadius, "food")
 }
->>>>>>> 85d36b44477a67e9fd089c7c207c440f38f71de6
 
 function submitSearchBar() {
     //event.preventDefault();
@@ -117,52 +105,52 @@ function renderRandomBar(randomBar) {
     responseBarContainer.append(randomBarUrl)
 }
 
-function ticketmasterData(city, radiusInput){
-$.ajax({
-    type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&radius=" + radiusInput,
-    async: true,
-    dataType: "json",
-    success: function (data) {
-        var randomnumber = getRandomNumber()
-        console.log(data)
-        console.log(data._embedded.events[randomnumber].name);
-        renderRandomEvent(data._embedded.events[randomnumber])
+// function ticketmasterData(city, radiusInput){
+// $.ajax({
+//     type: "GET",
+//     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&radius=" + radiusInput,
+//     async: true,
+//     dataType: "json",
+//     success: function (data) {
+//         var randomnumber = getRandomNumber()
+//         console.log(data)
+//         console.log(data._embedded.events[randomnumber].name);
+//         renderRandomEvent(data._embedded.events[randomnumber])
         
-    },
-    error: function (xhr, status, err) {
-        // This time, we do not end up here!
-    }
-});
-}
+//     },
+//     error: function (xhr, status, err) {
+//         // This time, we do not end up here!
+//     }
+// });
+// }
 // function that takes the user input for city and radius and has ticketmaster data meet those parameters
-function searchEvent(){
-    var city = document.querySelector("#location").value;
-    var radius = document.querySelector("#miles").value;
-    var miles = 0;
-    if (radius > 25) {
-        miles = 40000
-    } else {
-        miles = Math.floor(radius*1609.344);
-    }
-    var radiusInput = Math.round(miles/1000)*1000
+// function searchEvent(){
+//     var city = document.querySelector("#location").value;
+//     var radius = document.querySelector("#miles").value;
+//     var miles = 0;
+//     if (radius > 25) {
+//         miles = 40000
+//     } else {
+//         miles = Math.floor(radius*1609.344);
+//     }
+//     var radiusInput = Math.round(miles/1000)*1000
 
-    ticketmasterData(city, radiusInput);
-}
-function renderRandomEvent(randomEvent) {
-    console.log(randomEvent)
-    var eventEl = $("<div>").addClass("random-event");
+//     ticketmasterData(city, radiusInput);
+// }
+// function renderRandomEvent(randomEvent) {
+//     console.log(randomEvent)
+//     var eventEl = $("<div>").addClass("random-event");
 
-    var eventSpan = $("<span>");
-    console.log(randomEvent.name);
-    eventSpan.text("Your Randomized Event: " + randomEvent.name);
-    eventEl.append(eventSpan)
+//     var eventSpan = $("<span>");
+//     console.log(randomEvent.name);
+//     eventSpan.text("Your Randomized Event: " + randomEvent.name);
+//     eventEl.append(eventSpan)
 
-    var ticketmasterUrl = $("<a href>")
-    console.log(randomEvent.url)
-    ticketmasterUrl.attr("src", "url")
-    eventEl.append(ticketmasterUrl)
-}
+//     var ticketmasterUrl = $("<a href>")
+//     console.log(randomEvent.url)
+//     ticketmasterUrl.attr("src", "url")
+//     eventEl.append(ticketmasterUrl)
+// }
 //Button function
 var displaybtn = function(){
   var button = document.createElement('button');
@@ -181,14 +169,14 @@ function displaybtn2(){
 }
 
 
-document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 
 
 //when click submit button call submitSearch function; will need to move to bottom of page
 //THIS button is if they want FOOD
-document.getElementById("FindFoodDrinks").addEventListener("click", submitSearchFood);
+document.getElementById("Restaurantsbtn").addEventListener("click", submitSearchFood);
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 
-document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 

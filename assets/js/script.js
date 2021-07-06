@@ -1,3 +1,5 @@
+var ticketmasterEndDate = moment().add(7, 'days').format(" (M/D/Y)");
+console.log(ticketmasterEndDate);
 //generate random restraurant (referring to this as "food" cause easier to spell)
 var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&location=cleveland&radius=40000&limit=50";
 $.ajax({
@@ -79,14 +81,14 @@ function renderRandomBar(randomBar) {
 
 $.ajax({
     type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&postalCode=44110",
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa&endDateTime=" + ticketmasterEndDate,
     async: true,
     dataType: "json",
     success: function (data) {
-        // var randomnumber = getRandomNumber()
+        var randomnumber = getRandomNumber()
         console.log(data)
-        console.log(data._embedded.events[0].name);
-        renderRandomEvent(data._embedded.events[0])
+        console.log(data._embedded.events[randomnumber].name);
+        renderRandomEvent(data._embedded.events[randomnumber])
         
         // Parse the response.
         // Do other things.

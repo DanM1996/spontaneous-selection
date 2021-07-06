@@ -77,10 +77,10 @@ function getRandomNumber() {
 //     responseBarContainer.append(randomBarUrl)
 // }
 
-
+function ticketmasterData(city, radiusInput){
 $.ajax({
     type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa",
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&radius=" + radiusInput,
     async: true,
     dataType: "json",
     success: function (data) {
@@ -94,6 +94,21 @@ $.ajax({
         // This time, we do not end up here!
     }
 });
+}
+// function that takes the user input for city and radius and has ticketmaster data meet those parameters
+function searchEvent(){
+    var city = document.querySelector("#location").value;
+    var radius = document.querySelector("#miles").value;
+    var miles = 0;
+    if (radius > 25) {
+        miles = 40000
+    } else {
+        miles = Math.floor(radius*1609.344);
+    }
+    var radiusInput = Math.round(miles/1000)*1000
+
+    ticketmasterData(city, radiusInput);
+}
 function renderRandomEvent(randomEvent) {
     console.log(randomEvent)
     var eventEl = $("<div>").addClass("random-event");
@@ -106,24 +121,23 @@ function renderRandomEvent(randomEvent) {
     var ticketmasterUrl = $("<a href>")
     console.log(randomEvent.url)
     ticketmasterUrl.attr("src", "url")
-    eventEl.appendChild(ticketmasterUrl)
-
+    eventEl.append(ticketmasterUrl)
 }
-// //Button function
-// var displaybtn = function(){
-//   var button = document.createElement('button');
-//   button.innerHTML = 'Click for Movies';
-//   button.onclick = function(){
-//   };
+//Button function
+var displaybtn = function(){
+  var button = document.createElement('button');
+  button.innerHTML = 'Click for Movies';
+  button.onclick = function(){
+  };
   
-//   document.getElementById('Moviebtn').appendChild(button);
-// };
+  document.getElementById('Moviebtn').appendChild(button);
+};
 
 
-// document.getElementById("Moviebtn").addEventListener("click", displaybtn);
+document.getElementById("Moviebtn").addEventListener("click", displaybtn);
 
-// function displaybtn2(){
-//     FindFoodDrinks.style.background = "red";
-// }
+function displaybtn2(){
+    FindFoodDrinks.style.background = "red";
+}
 
-// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);

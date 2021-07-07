@@ -1,5 +1,7 @@
 var format = "YYYY-MM-DDTHH:mm:ss";
 var ticketmasterEndDate = moment().add(7, 'days').format(format);
+var location = document.getElementById("location");
+
 function getYelpData(searchTerm, searchRadius, searchType){
     var myurl = ""
     if(searchType === "food"){
@@ -143,7 +145,7 @@ function renderRandomBar(randomBar) {
 function ticketmasterData(city, radiusInput){
 $.ajax({
     type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa&endDateTime=" + ticketmasterEndDate + "Z",
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + location + "&endDateTime=" + ticketmasterEndDate + "Z",
     async: true,
     dataType: "json",
     success: function (data) {
@@ -216,13 +218,7 @@ function displaybtn2(){
 }
 
 
-<<<<<<< HEAD
-
-
-document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
-=======
 // document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
->>>>>>> 55fb122d7631bd3ef38fae65ff3a695a85888add
 
 
 //when click submit button call submitSearch function; will need to move to bottom of page

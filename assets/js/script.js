@@ -1,21 +1,25 @@
 function getYelpData(searchTerm, searchRadius, searchType){
     var myurl = ""
     if(searchType === "food"){
-        myurl = "https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "http://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
     }
     if(searchType === "bar"){
-        myurl = "https://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "http://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
     }
     //generate random restraurant (referring to this as "food" cause easier to spell)
     
     $.ajax({
         url: myurl,
+        method: 'GET',
         headers: {
+            'accept': 'application/json',
+            'x-requested-with': 'xmlhttprequest',
+            'Access-Control-Allow-Origin': '*',
             'Authorization': 'Bearer N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx',
+            // 'Content-Type': 'text/html application/json'
         },
 
-        method: 'GET',
-        dataType: 'json',
+        // dataType: 'json',
         //when API responds success function is the first thing to run
         success: function (data) {
             var randomNumber = getRandomNumber()

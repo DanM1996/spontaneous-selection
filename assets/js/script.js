@@ -9,7 +9,7 @@ function getYelpData(searchTerm, searchRadius, searchType) {
     //generate random restraurant (referring to this as "food" cause easier to spell)
 
     var token = "N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx"
-    fetch("http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=Houston&radius=40000", {
+    fetch(myurl, {
             // mode:"cors",
             headers: {
                 'x-requested-with': '123',
@@ -49,8 +49,7 @@ function getYelpData(searchTerm, searchRadius, searchType) {
 
 //function to dynamically change city and radius based on user input
 function submitSearchFood() {
-    //event.preventDefault();
-    //creaate a variable to hold the search input
+    //create a variable to hold the search input
     var searchTerm = document.getElementById("location").value;
     var miles = document.getElementById("miles").value;
     var meters = 0
@@ -65,7 +64,6 @@ function submitSearchFood() {
 }
 
 function submitSearchBar() {
-    //event.preventDefault();
     //creaate a variable to hold the search input
     var searchTerm = document.getElementById("location").value;
     var miles = document.getElementById("miles").value;
@@ -88,38 +86,52 @@ function getRandomNumber() {
 
 function renderRandomFood(randomFood) {
     console.log(randomFood)
-    //create div to hold food response from Yelp
-    var responseFoodContainer = $("<div>").addClass("random-container-food");
 
-    //display restraurant name
-    var randomFoodSpan = $("<span>")
+    var randomFoodDiv = $("#Restaurants-name")
+    randomFoodDiv.empty()
+    randomFoodDiv.text(randomFood.name)
     console.log(randomFood.name)
-    randomFoodSpan.text("Date Spot Tonight: " + randomFood.name)
-    responseFoodContainer.append(randomFoodSpan)
-
-    //display url link that when clicked will take user to the the Yelp page for the restraurant
-    var randomFoodUrl = $("<a href>")
+    
+    var randomFoodAddressDiv = $("#Restaurants-address")
+    randomFoodAddressDiv.empty()
+    randomFoodAddressDiv.text(randomFood.location.display_address[0] + ' ' + randomFood.location.display_address[1])
+    console.log(randomFood.display_address)
+    
+    var randomFoodWebsiteDiv = $("#Restaurants-website")
+    randomFoodWebsiteDiv.empty()
+    var randomFoodUrl = $("<a>")
     console.log(randomFood.url)
-    randomFoodUrl.attr("src", "url")
-    responseFoodContainer.append(randomFoodUrl)
+    randomFoodUrl.text("Website Link")
+    randomFoodUrl.attr("href", randomFood.url)
+    randomFoodWebsiteDiv.append(randomFoodUrl)
+}
+
+function addFoodToStorage(){
+    //first check what check what food place has been stored by the user
+    var savedFood = JSON.parse(localStorage.getItem("foodHistory"))
+    
 }
 
 function renderRandomBar(randomBar) {
     console.log(randomBar)
-    //create div to hold food response from Yelp
-    var responseBarContainer = $("<div>").addClass("random-container-bar");
 
-    //display restraurant name
-    var randomBarSpan = $("<span>")
+    var randomBarDiv = $("#Restaurants-name")
+    randomBarDiv.empty()
+    randomBarDiv.text(randomBar.name)
     console.log(randomBar.name)
-    randomBarSpan.text("Date Spot Tonight: " + randomBar.name)
-    responseBarContainer.append(randomBarSpan)
-
-    //display url link that when clicked will take user to the the Yelp page for the restraurant
-    var randomBarUrl = $("<a href>")
+    
+    var randomBarAddressDiv = $("#Restaurants-address")
+    randomBarAddressDiv.empty()
+    randomBarAddressDiv.text(randomBar.location.display_address[0] + ' ' + randomBar.location.display_address[1])
+    console.log(randomBar.display_address)
+    
+    var randomBarWebsiteDiv = $("#Restaurants-website")
+    randomBarWebsiteDiv.empty()
+    var randomBarUrl = $("<a>")
     console.log(randomBar.url)
-    randomBarUrl.attr("src", "url")
-    responseBarContainer.append(randomBarUrl)
+    randomBarUrl.text("Yelp Link")
+    randomBarUrl.attr("href", randomBar.url)
+    randomBarWebsiteDiv.append(randomBarUrl)
 }
 
 function ticketmasterData(city, radiusInput) {
@@ -201,25 +213,6 @@ function displaybtn2() {
 document.getElementById("Restaurantsbtn").addEventListener("click", submitSearchFood);
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
-
-function renderRandomBar(randomBar) {
-    console.log(randomBar)
-    //create div to hold food response from Yelp
-    var responseBarContainer = $("<div>").addClass("random-container-bar");
-
-    //display restraurant name
-    var randomBarSpan = $("<span>")
-    console.log(randomBar.name)
-    randomBarSpan.text("Date Spot Tonight: " + randomBar.name)
-    responseBarContainer.append(randomBarSpan)
-
-    //display url link that when clicked will take user to the the Yelp page for the restraurant
-    var randomBarUrl = $("<a href>")
-    console.log(randomBar.url)
-    randomBarUrl.attr("src", "url")
-    responseBarContainer.append(randomBarUrl)
-}
-
 
 // $.ajax({
 //     type: "GET",

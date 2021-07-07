@@ -9,7 +9,7 @@ function getYelpData(searchTerm, searchRadius, searchType){
     //generate random restraurant (referring to this as "food" cause easier to spell)
     
     var token = "N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx"
-    fetch("http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=Houston&radius=40000", {
+    fetch("http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=Denver&radius=40000", {
       // mode:"cors",
       headers: {
         'x-requested-with': '123',

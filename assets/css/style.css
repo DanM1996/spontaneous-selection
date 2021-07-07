@@ -6,13 +6,6 @@
     background-color: rgba(193, 88, 88, 0.852);
 }
 
-.color-bar2{
-    padding: 20px 35px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    background-color: rgba(193, 88, 88, 0.852);
-}
 
 .row .col.s4 {
     width: 33.3333333333%;
@@ -39,6 +32,10 @@
   
 }
 
+#saveRestaurant-barbtn{
+    width: max-content;
+
+}
 .btn,
 .waves-effect{
     border-radius: 12px;

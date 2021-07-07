@@ -8,27 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <title>Dating In The Land</title>
+    <title>Spontaneous Selection</title>
 </head>
 <body>
 
     
   <div class="color-bar">
       <div class="name-wrapper">
-          <p class="brand-name">Dating In The Land</p>
+          <p class="brand-name">Spontaneous Selection</p>
       </div>
   </div>
 
 
     <div class="img-container">
-      <img class="materialboxed" data-caption="Too people on a date" src="./assets/images/Dating.jpg">
+      <img class="materialboxed" data-caption="Two people on a date" src="./assets/images/bar-background.jpg">
     </div>
     <div class="container">
       <div class="row">
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <input id="first_name" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
@@ -58,31 +58,78 @@
 
     <div class="divider"></div>
           <div class="section">
-            <h5>Event Selection</h5>
-              <p>Randomly Select A Event!</p>
-          </div>
+            <div class="container">
+              <div class="row">
+      
+                  <div class="col s4">
+                    <!-- Promo Content 1 goes here -->
+                      <h5>Restaurants/Bars Selection</h5>
+                      <p>Randomly Select A Restaurant or Bar!</p>
+                    
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 2 goes here -->
+                    
+                        <div class="container">
+                          <div  id="Restaurantsbtn"><a class="waves-effect waves-light btn-small">Restaurants</a></div>
+                          <div  id="Barsbtn"><a class="waves-effect waves-light btn-small">Bars</a></div>
+                          <div  id="Refreshbtn2"><a class="waves-effect waves-light btn-small">Refresh</a></div>
+                          <div  id="saveRestaurant-barbtn"><a class="waves-effect waves-light btn-small">Save Restaurants/Bars</a></div>
+                        </div>
+                  
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 3 goes here -->
+      
+                    <h5>Restaurants name</h5>
+                    <div class="Restaurants-name" id="Restaurants-name"> </div>
+                    <div class="Restaurants-address" id="Restaurants-address"></div>
+                    <div class="Restaurants-website" id="Restaurants-website"></div>
+                  </div>
+      
+                  </div>
+            
+              </div>
+          </div>  
 
     <main class="Flex-container">
-        <div class="container">
-            <div class="row">
-                <div class="col s6" id="eventbtn" onclick="ticketmasterData()"><a class="waves-effect waves-light btn-small">Event</a></div>
-                <div class="col s6" id="Refreshbtn"><a class="waves-effect waves-light btn-small">Refresh</a></div>
-            </div>
-        </div>  
         
         <div class="divider"></div>
           <div class="section">
-            <h5>Food/Drinks Selection</h5>
-              <p>Randomly Select A Restaurants/Bars!</p>
+            <div class="container">
+              <div class="row">
+      
+                  <div class="col s4">
+                    <!-- Promo Content 1 goes here -->
+                    <h5>Event Selection</h5>
+                    <p>Randomly Select A Event!</p>
+                    
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 2 goes here -->
+                    
+                        <div class="container">
+                           
+                          <div  id="eventbtn" onclick="ticketmasterData()"><a class="waves-effect waves-light btn-small">Event</a></div>
+                          <div  id="Refreshbtn"><a class="waves-effect waves-light btn-small">Refresh</a></div>
+                          <div  id="saveEventbtn"><a class="waves-effect waves-light btn-small">Save Event</a></div>
+                              
+                        </div>
+                  
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 3 goes here -->
+      
+                    <h5>Events Name</h5>
+                    <div class="Event-name" id="Event-name"> </div>
+                    <div class="Event-address" id="Event-address"></div>
+                    <div class="Event-website" id="Event-website"></div>
+                  </div>
+      
+                
+            
+              </div>
           </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col s6" id="Restaurantsbtn"><a class="waves-effect waves-light btn-small">Restaurants</a></div>
-                <div class="col s6" id="Barsbtn"><a class="waves-effect waves-light btn-small">Bars</a></div>
-                <div class="col s6" id="Refreshbtn2"><a class="waves-effect waves-light btn-small">Refresh</a></div>
-              </div>    
-        </div>
 
     </main>
     <div class="container">
@@ -134,7 +181,7 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<scriptgi src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

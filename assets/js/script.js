@@ -103,12 +103,40 @@ function renderRandomFood(randomFood) {
     console.log(randomFood.url)
     randomFoodUrl.text("Website Link")
     randomFoodUrl.attr("href", randomFood.url)
+    randomFoodUrl.attr("id", "website-link-a")
     randomFoodWebsiteDiv.append(randomFoodUrl)
 }
 
-function addFoodToStorage(){
-    //first check what check what food place has been stored by the user
+function saveLastSpot(){
+    var name = $("#Restaurants-name").text()
+    var address = $("#Restaurants-address").text()
+    var url = $("#website-link-a").attr("href")
+    var savedFood = {
+        name: name,
+        location: {
+            display_address: [address, ""]
+        },
+
+        url: url
+    }
+    localStorage.setItem("foodHistory", JSON.stringify(savedFood));
+};
+
+function getLastFood(){
+    //first check what check what food/bar has been stored by the user
     var savedFood = JSON.parse(localStorage.getItem("foodHistory"))
+    
+    //If nothing has been saved yet, create a BLANK object in local storage
+    //and tell user no saved restaraunt exists
+    if (!savedFood) {
+        savedFood = {}
+        localStorage.setItem("foodHistory", JSON.stringify({}));
+        alert("Nothing yet saved");
+    }
+    else{
+        //if a savedFood item does exist we will render it onto the div
+        renderRandomFood(savedFood)
+    }
     
 }
 
@@ -214,6 +242,10 @@ document.getElementById("Restaurantsbtn").addEventListener("click", submitSearch
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 
+//This button click will show the SAVED food item
+document.getElementById("Refreshbtn2").addEventListener("click", getLastFood);
+//this button click will SET the saved food item
+document.getElementById("saveRestaurant-barbtn").addEventListener("click", saveLastSpot)
 // $.ajax({
 //     type: "GET",
 //     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId",

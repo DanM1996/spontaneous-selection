@@ -1,4 +1,6 @@
-var ticketmasterEndDate = moment().add(7, 'days').format(" M/D/Y");
+var format = "YYYY-MM-DDTHH:mm:ss";
+var ticketmasterEndDate = moment().add(7, 'days').format(format);
+
 console.log(ticketmasterEndDate);
 //generate random restraurant (referring to this as "food" cause easier to spell)
 var myurl = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&location=cleveland&radius=40000&limit=50";
@@ -80,7 +82,7 @@ function renderRandomBar(randomBar) {
 function ticketmasterData(city, radiusInput){
 $.ajax({
     type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&radius=" + radiusInput,
+    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa&endDateTime=" + ticketmasterEndDate + "Z",
     async: true,
     dataType: "json",
     success: function (data) {
@@ -141,3 +143,4 @@ function displaybtn2(){
 }
 
 document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+ticketmasterData();

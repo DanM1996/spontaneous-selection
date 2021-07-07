@@ -1,3 +1,5 @@
+var format = "YYYY-MM-DDTHH:mm:ss";
+var ticketmasterEndDate = moment().add(7, 'days').format(format);
 function getYelpData(searchTerm, searchRadius, searchType){
     var myurl = ""
     if(searchType === "food"){
@@ -101,6 +103,7 @@ function getRandomNumber() {
     return Math.floor(Math.random() * 50) + 1;
 }
 
+
 function renderRandomFood(randomFood) {
     console.log(randomFood)
     //create div to hold food response from Yelp
@@ -144,9 +147,20 @@ $.ajax({
     async: true,
     dataType: "json",
     success: function (data) {
-        var randomnumber = getRandomNumber()
+        // set variable to equal length of array in data
+        eventLength = data._embedded.events.length;
+
+        // run function to get a random number that falls in the length of the array
+        function getRandomEventNumber() {
+            return Math.floor(Math.random() * eventLength);
+        }
+        
+        // call function here to display data
+        var randomnumber = getRandomEventNumber()
         console.log(data)
         console.log(data._embedded.events[randomnumber].name);
+        
+    
         renderRandomEvent(data._embedded.events[randomnumber])
         
     },
@@ -154,6 +168,7 @@ $.ajax({
         // This time, we do not end up here!
     }
 });
+
 }
 // function that takes the user input for city and radius and has ticketmaster data meet those parameters
 function searchEvent(){

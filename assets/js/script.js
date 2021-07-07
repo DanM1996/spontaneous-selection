@@ -8,31 +8,59 @@ function getYelpData(searchTerm, searchRadius, searchType){
     }
     //generate random restraurant (referring to this as "food" cause easier to spell)
     
-    $.ajax({
-        url: myurl,
-        method: 'GET',
-        headers: {
-            'accept': 'application/json',
-            'x-requested-with': 'xmlhttprequest',
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx',
-            // 'Content-Type': 'text/html application/json'
-        },
+    var token = "N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx"
+    fetch("http://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=food&limit=50&location=Houston&radius=40000", {
+      // mode:"cors",
+      headers: {
+        'x-requested-with': '123',
+        "Authorization": `Bearer ${token}`,
+        // "Content-Type": "application/x-www-form-urlencoded"
+        // content-type: application/json
+        // server: envoy
+        // x-routing-service: routing-main--useast1-b579557df-26swb; site=public_api_v3
+        // ratelimit-resettime: 2021-07-08T00:00:00+00:00
+        // ratelimit-dailylimit: 5000
+        // ratelimit-remaining: 5000
+        // x-cloudmap: routing_useast1
+        // x-proxied: 10-65-66-189-useast1aprod
+        // x-extlb: 10-65-66-189-useast1aprod
+        // cache-control: max-age=0, no-store, private, no-transform
+        // accept-ranges: bytes
+        // date: Wed, 07 Jul 2021 00:34:22 GMT
+        // via: 1.1 varnish
+        // x-served-by: cache-iah17278-IAH
+        // x-cache: MISS
+        // x-cache-hits: 0
+        // content-length: 49186
+      }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    // $.ajax({
+    //     url: myurl,
+    //     method: 'GET',
+    //     headers: {
+    //         'accept': 'application/json',
+    //         'x-requested-with': 'xmlhttprequest',
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Authorization': 'Bearer N6jC9hEJzTF9RnctCg_sNYHsnJeGGqXljv7PadDwa9cnNkH1l-dyPYCqUZ3j6JFyEBP9kfiiGvNbjdGloQd-0trLXbfSMkA69e1gvRnJM3q5ps_T1Z7-yZxkWg7dYHYx',
+    //         // 'Content-Type': 'text/html application/json'
+    //     },
 
-        // dataType: 'json',
-        //when API responds success function is the first thing to run
-        success: function (data) {
-            var randomNumber = getRandomNumber()
-            console.log(data.businesses)
-            if(searchType === "food"){
-                renderRandomFood(data.businesses[randomNumber])
-            }
-            if(searchType === "bar"){
-                renderRandomBar(data.businesses[randomNumber])
-            }
+    //     // dataType: 'json',
+    //     //when API responds success function is the first thing to run
+    //     success: function (data) {
+    //         var randomNumber = getRandomNumber()
+    //         console.log(data.businesses)
+    //         if(searchType === "food"){
+    //             renderRandomFood(data.businesses[randomNumber])
+    //         }
+    //         if(searchType === "bar"){
+    //             renderRandomBar(data.businesses[randomNumber])
+    //         }
             
-        }
-    });
+    //     }
+    // });
 }
 //function to dynamically change city and radius based on user input
 function submitSearchFood() {
@@ -166,14 +194,14 @@ var displaybtn = function(){
 };
 
 
-document.getElementById("Moviebtn").addEventListener("click", displaybtn);
+// document.getElementById("Moviebtn").addEventListener("click", displaybtn);
 
 function displaybtn2(){
     FindFoodDrinks.style.background = "red";
 }
 
 
-document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 
 
 //when click submit button call submitSearch function; will need to move to bottom of page
@@ -182,6 +210,6 @@ document.getElementById("Restaurantsbtn").addEventListener("click", submitSearch
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 
-document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
 
-ticketmasterData();
+// ticketmasterData();

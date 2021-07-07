@@ -148,7 +148,6 @@ $.ajax({
         renderRandomBar(data.businesses[randomNumber])
     }
 });
-<<<<<<< HEAD
 //Button function
 var displaybtn = function(){
   var button = document.createElement('button');
@@ -174,39 +173,3 @@ document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2)
 document.getElementById("FindFoodDrinks").addEventListener("click", submitSearchFood);
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
-=======
-
-function renderRandomBar(randomBar) {
-    console.log(randomBar)
-    //create div to hold food response from Yelp
-    var responseBarContainer = $("<div>").addClass("random-container-bar");
-
-    //display restraurant name
-    var randomBarSpan = $("<span>")
-    console.log(randomBar.name)
-    randomBarSpan.text("Date Spot Tonight: " + randomBar.name)
-    responseBarContainer.append(randomBarSpan)
-
-    //display url link that when clicked will take user to the the Yelp page for the restraurant
-    var randomBarUrl = $("<a href>")
-    console.log(randomBar.url)
-    randomBarUrl.attr("src", "url")
-    responseBarContainer.append(randomBarUrl)
-}
-
-
-// $.ajax({
-//     type: "GET",
-//     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId",
-//     async: true,
-//     dataType: "json",
-//     success: function (json) {
-//         console.log(json);
-//         // Parse the response.
-//         // Do other things.
-//     },
-//     error: function (xhr, status, err) {
-//         // This time, we do not end up here!
-//     }
-// });
->>>>>>> develop

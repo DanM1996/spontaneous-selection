@@ -216,7 +216,13 @@ function displaybtn2(){
 }
 
 
+<<<<<<< HEAD
+
+
+document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+=======
 // document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
+>>>>>>> 55fb122d7631bd3ef38fae65ff3a695a85888add
 
 
 //when click submit button call submitSearch function; will need to move to bottom of page

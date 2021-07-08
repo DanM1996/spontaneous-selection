@@ -83,7 +83,7 @@ function submitSearchFood() {
     if (miles >= 25) {
         meters = 40000
     } else {
-        meters = Math.Floor(miles * 1609.344);
+        meters = Math.floor(miles * 1609.344);
     }
     var searchRadius = Math.round(meters / 1000) * 1000
 
@@ -98,7 +98,7 @@ function submitSearchBar() {
     if (miles >= 25) {
         meters = 40000
     } else {
-        meters = Math.Floor(miles * 1609.344);
+        meters = Math.floor(miles * 1609.344);
     }
     var searchRadius = Math.round(meters / 1000) * 1000
 
@@ -159,7 +159,6 @@ function getLastFood(){
     if (!savedFood) {
         savedFood = {}
         localStorage.setItem("foodHistory", JSON.stringify({}));
-        alert("Nothing yet saved");
     }
     else{
         //if a savedFood item does exist we will render it onto the div

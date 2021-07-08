@@ -130,6 +130,7 @@ function renderRandomFood(randomFood) {
     randomFoodUrl.attr("href", randomFood.url)
     randomFoodUrl.attr("id", "website-link-a")
     randomFoodWebsiteDiv.append(randomFoodUrl)
+    console.log(randomFoodWebsiteDiv);
 }
 
 function saveLastSpot(){
@@ -204,18 +205,18 @@ function searchEvent() {
 
 function renderRandomEvent(randomEvent) {
     console.log(randomEvent)
-    var eventEl = $("#event-name");
 
+    var eventEl = $("#event-name");
     eventEl.empty()
     eventEl.text(randomEvent.name);
     console.log(randomEvent.name);
-
+   
     var eventTime = $("#event-time");
     eventTime.empty();
-    eventTime.text(randomEvent.dates.start.localTime)
+    eventTime.text(randomEvent.dates.start.localTime);
     console.log(randomEvent.dates.start.localTime);
-
-    var eventWebLink = $("#event-url");
+   
+    var eventWebLink = $("#Event-website");
     eventWebLink.empty();
     var eventUrl = $("<a>");
     console.log(randomEvent.url);
@@ -223,19 +224,23 @@ function renderRandomEvent(randomEvent) {
     eventUrl.attr("href", randomEvent.url)
     eventUrl.attr("id", "website-link")
     eventWebLink.append(eventUrl);
+    console.log(eventWebLink);
 }
 
 function saveEvent(){
-    var name = $("#event-name").text().trim()
-    var time = $("#event-time").text().trim()
-    var link = $("website-link").attr("href")
+    var name = $("#event-name").text().trim();
+    var time = $("#event-time").text();
+    var link = $("#website-link").attr("href");
     var savedEvent = {
         name: name,
         url: link,
-        time: {
-            dates: [time, ""]
-        },
-    }
+        dates: {
+            start: {
+                localTime: time
+            }
+        }
+
+    };
     localStorage.setItem("eventSave", JSON.stringify(savedEvent));
 }
 

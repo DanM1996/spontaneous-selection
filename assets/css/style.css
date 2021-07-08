@@ -53,9 +53,13 @@ body{
     margin-left: auto;
     left: auto;
     right: auto;
-    font-size: medium;
+    font-size: small;
 }
-
+h5 {
+    font-size: 20px;
+    line-height: 120%;
+    margin: 1.093333rem 0 .656rem 0;
+}
 .name-wrapper{
   display: flex;
   flex-wrap: wrap;

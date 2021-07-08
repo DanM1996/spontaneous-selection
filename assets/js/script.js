@@ -1,3 +1,28 @@
+var format = "YYYY-MM-DDTHH:mm:ss";
+var ticketmasterEndDate = moment().add(7, "days").format(format);
+
+function ticketmasterData(city, radiusInput){
+    fetch("https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&endDateTime=" + ticketmasterEndDate + "Z")
+        .then(function(data){
+            return data.json();
+        })
+        .then(function(data){
+        // set variable to equal length of array in data
+        eventLength = data._embedded.events.length;
+        console.log(eventLength);
+
+        // run function to get a random number that falls in the length of the array
+        function getRandomEventNumber() {
+            return Math.floor(Math.random() * eventLength);
+        }
+        
+        // call function here to display data
+        var randomnumber = getRandomEventNumber()
+        console.log(data)
+    
+        renderRandomEvent(data._embedded.events[randomnumber]) 
+    })
+}
 function getYelpData(searchTerm, searchRadius, searchType) {
     var myurl = ""
     if (searchType === "food") {
@@ -56,7 +81,7 @@ function submitSearchFood() {
     if (miles >= 25) {
         meters = 40000
     } else {
-        meters = Math.Floor(miles * 1609.344);
+        meters = Math.floor(miles * 1609.344);
     }
     var searchRadius = Math.round(meters / 1000) * 1000
 
@@ -71,7 +96,7 @@ function submitSearchBar() {
     if (miles >= 25) {
         meters = 40000
     } else {
-        meters = Math.Floor(miles * 1609.344);
+        meters = Math.floor(miles * 1609.344);
     }
     var searchRadius = Math.round(meters / 1000) * 1000
 
@@ -162,30 +187,6 @@ function renderRandomBar(randomBar) {
     randomBarWebsiteDiv.append(randomBarUrl)
 }
 
-function ticketmasterData(city, radiusInput) {
-    // $.ajax({
-    //     type: "GET",
-    //     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=Tampa&endDateTime=" + ticketmasterEndDate + "Z",
-    //     async: true,
-    //     dataType: "json",
-    //     success: function (data) {
-    //         var randomnumber = getRandomNumber()
-    //         console.log(data)
-    //         console.log(data._embedded.events[randomnumber].name);
-    //         renderRandomEvent(data._embedded.events[randomnumber])
-
-    //     },
-
-    // method: 'GET',
-    // dataType: 'json',
-    // //when API responds success function is the first thing to run
-    // success: function (data) {
-    //     var randomNumber = getRandomNumber()
-    //     console.log(data.businesses)
-    //     renderRandomBar(data.businesses[randomNumber])
-    //     }
-    // });
-}
 // function that takes the user input for city and radius and has ticketmaster data meet those parameters
 function searchEvent() {
     var city = document.querySelector("#location").value;
@@ -203,40 +204,50 @@ function searchEvent() {
 
 function renderRandomEvent(randomEvent) {
     console.log(randomEvent)
-    var eventEl = $("<div>").addClass("random-event");
+    var eventEl = $("#event-name");
 
-    var eventSpan = $("<span>");
+    eventEl.empty()
+    eventEl.text(randomEvent.name);
     console.log(randomEvent.name);
-    eventSpan.text("Your Randomized Event: " + randomEvent.name);
-    eventEl.append(eventSpan)
 
-    var ticketmasterUrl = $("<a href>")
-    console.log(randomEvent.url)
-    ticketmasterUrl.attr("src", "url")
-    eventEl.append(ticketmasterUrl)
+    var eventTime = $("#event-time");
+    eventTime.empty();
+    eventTime.text(randomEvent.dates.start.localTime)
+    console.log(randomEvent.dates.start.localTime);
+
+    var eventWebLink = $("#event-url");
+    eventWebLink.empty();
+    var eventUrl = $("<a>");
+    console.log(randomEvent.url);
+    eventUrl.text("Ticketmaster Event Link");
+    eventUrl.attr("href", randomEvent.url)
+    eventUrl.attr("id", "website-link-a")
+    eventWebLink.append(eventUrl);
 }
 
-//Button function
-var displaybtn = function () {
-    var button = document.createElement('button');
-    button.innerHTML = 'Click for Movies';
-    button.onclick = function () {};
-
-    document.getElementById('Moviebtn').appendChild(button);
-};
-
-
-// document.getElementById("Moviebtn").addEventListener("click", displaybtn);
-
-function displaybtn2() {
-    FindFoodDrinks.style.background = "red";
+function saveEvent(){
+    var name = $("#event-name").text().trim()
+    var time = $("#event-time").text().trim()
+    var link = $("#website-link-a").attr("href")
+    var savedEvent = {
+        name: name,
+        url: link,
+        time: time,
+    }
+    localStorage.setItem("eventSave", JSON.stringify(savedEvent));
 }
 
+function recallSavedEvent(){
+    var savedEvent = JSON.parse(localStorage.getItem("eventSave"))
+    if (!savedEvent) {
+        savedEvent = {}
+        localStorage.setItem("eventSave", JSON.stringify());
+    }
+    else {
+        renderRandomEvent(savedEvent);
+    }
+}
 
-// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
-
-
-//when click submit button call submitSearch function; will need to move to bottom of page
 //THIS button is if they want FOOD
 document.getElementById("Restaurantsbtn").addEventListener("click", submitSearchFood);
 //THIS button is if they want BAR
@@ -246,21 +257,7 @@ document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 document.getElementById("Refreshbtn2").addEventListener("click", getLastFood);
 //this button click will SET the saved food item
 document.getElementById("saveRestaurant-barbtn").addEventListener("click", saveLastSpot)
-// $.ajax({
-//     type: "GET",
-//     url: "https://app.ticketmaster.com/discovery/v2/events.json?size=1&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId",
-//     async: true,
-//     dataType: "json",
-//     success: function (json) {
-//         console.log(json);
-//         // Parse the response.
-//         // Do other things.
-//     },
-//     error: function (xhr, status, err) {
-//         // This time, we do not end up here!
-//     }
-// });
 
-// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
-
-// ticketmasterData();
+document.getElementById("eventbtn").addEventListener("click", searchEvent);
+document.getElementById("saveEventbtn").addEventListener("click", saveEvent);
+document.getElementById("recallEventbtn").addEventListener("click", recallSavedEvent);

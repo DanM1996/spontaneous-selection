@@ -12,17 +12,14 @@
 </head>
 <body>
 
-    
-  <div class="color-bar">
-      <div class="name-wrapper">
-          <p class="brand-name">Spontaneous Selection</p>
-      </div>
-  </div>
+  <section class="background-img">
 
-
-    <div class="img-container">
-      <img class="materialboxed" data-caption="Two people on a date" src="./assets/images/bar-background.jpg">
+    <div class="background-subtitle">           
+           
+      <span class="span-background opacity">Spontaneous Selection</span>
     </div>
+    
+  </section>
     <div class="container">
       <div class="row">
     <form class="col s12">
@@ -38,8 +35,7 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="location" type="text" class="validate">
-          <label for="location">Enter your location</label>
+          <input type="text" id="location" placeholder="Enter a City!">
         </div>
         
       </div>
@@ -73,8 +69,8 @@
                         <div class="container">
                           <div  id="Restaurantsbtn"><a class="waves-effect waves-light btn-small">Restaurants</a></div>
                           <div  id="Barsbtn"><a class="waves-effect waves-light btn-small">Bars</a></div>
-                          <div  id="Refreshbtn2"><a class="waves-effect waves-light btn-small">Refresh</a></div>
-                          <div  id="saveRestaurant-barbtn"><a class="waves-effect waves-light btn-small">Save Restaurants/Bars</a></div>
+                          <div  id="saveRestaurant-barbtn"><a class="waves-effect waves-light btn-small">Save</a></div>
+                          <div  id="Refreshbtn2"><a class="waves-effect waves-light btn-small">Recall</a></div>
                         </div>
                   
                   </div>
@@ -110,10 +106,9 @@
                     
                         <div class="container">
                            
-                          <div  id="eventbtn" onclick="ticketmasterData()"><a class="waves-effect waves-light btn-small">Event</a></div>
-                          <div  id="Refreshbtn"><a class="waves-effect waves-light btn-small">Refresh</a></div>
+                          <div  id="eventbtn"><a class="waves-effect waves-light btn-small">Event</a></div>
                           <div  id="saveEventbtn"><a class="waves-effect waves-light btn-small">Save Event</a></div>
-                              
+                          <div  id="recallEventbtn"><a class="waves-effect waves-light btn-small">Recall Saved Event</a></div>    
                         </div>
                   
                   </div>
@@ -121,9 +116,9 @@
                     <!-- Promo Content 3 goes here -->
       
                     <h5>Events Name</h5>
-                    <div class="Event-name" id="Event-name"> </div>
-                    <div class="Event-address" id="Event-address"></div>
-                    <div class="Event-website" id="Event-website"></div>
+                    <div class="Event-name" id="event-name"> </div>
+                    <div class="Event-time" id="event-time"></div>
+                    <div class="Event-website" id="event-url"></div>
                   </div>
       
                 
@@ -144,7 +139,7 @@
           <div class="col s4">
             <!-- Promo Content 1 goes here -->
             <h5>About Us</h5>
-              <p>Us at Dating in the Land are tired of picking out Events
+              <p>Us at Spontaneous Selection are tired of picking out Events
               locations. we made this website so you don't have to be like us.
               </p>
             

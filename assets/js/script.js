@@ -1,6 +1,8 @@
+// converts time to UTC to work with ticketmaster API
 var format = "YYYY-MM-DDTHH:mm:ss";
+// variable to tell ticketmaster how far out to get events (1 day, 1 week, etc.)
 var ticketmasterEndDate = moment().add(7, "days").format(format);
-
+// function that calls ticketmaster API data
 function ticketmasterData(city, radiusInput){
     fetch("https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&endDateTime=" + ticketmasterEndDate + "Z")
         .then(function(data){
@@ -130,6 +132,7 @@ function renderRandomFood(randomFood) {
     randomFoodUrl.attr("href", randomFood.url)
     randomFoodUrl.attr("id", "website-link-a")
     randomFoodWebsiteDiv.append(randomFoodUrl)
+    console.log(randomFoodWebsiteDiv);
 }
 
 function saveLastSpot(){
@@ -156,7 +159,6 @@ function getLastFood(){
     if (!savedFood) {
         savedFood = {}
         localStorage.setItem("foodHistory", JSON.stringify({}));
-        alert("Nothing yet saved");
     }
     else{
         //if a savedFood item does exist we will render it onto the div
@@ -201,42 +203,48 @@ function searchEvent() {
 
     ticketmasterData(city, radiusInput);
 }
-
+// function that randomizes events in the area
 function renderRandomEvent(randomEvent) {
     console.log(randomEvent)
-    var eventEl = $("#event-name");
 
+    var eventEl = $("#event-name");
     eventEl.empty()
     eventEl.text(randomEvent.name);
     console.log(randomEvent.name);
-
+   
     var eventTime = $("#event-time");
     eventTime.empty();
-    eventTime.text(randomEvent.dates.start.localTime)
+    eventTime.text(randomEvent.dates.start.localTime);
     console.log(randomEvent.dates.start.localTime);
-
-    var eventWebLink = $("#event-url");
+   
+    var eventWebLink = $("#Event-website");
     eventWebLink.empty();
     var eventUrl = $("<a>");
     console.log(randomEvent.url);
     eventUrl.text("Ticketmaster Event Link");
     eventUrl.attr("href", randomEvent.url)
-    eventUrl.attr("id", "website-link-a")
+    eventUrl.attr("id", "website-link")
     eventWebLink.append(eventUrl);
+    console.log(eventWebLink);
 }
-
+// function that saves current event to local storage
 function saveEvent(){
-    var name = $("#event-name").text().trim()
-    var time = $("#event-time").text().trim()
-    var link = $("#website-link-a").attr("href")
+    var name = $("#event-name").text().trim();
+    var time = $("#event-time").text();
+    var link = $("#website-link").attr("href");
     var savedEvent = {
         name: name,
         url: link,
-        time: time,
-    }
+        dates: {
+            start: {
+                localTime: time
+            }
+        }
+
+    };
     localStorage.setItem("eventSave", JSON.stringify(savedEvent));
 }
-
+// function that recalls data from local storage
 function recallSavedEvent(){
     var savedEvent = JSON.parse(localStorage.getItem("eventSave"))
     if (!savedEvent) {
@@ -258,6 +266,8 @@ document.getElementById("Refreshbtn2").addEventListener("click", getLastFood);
 //this button click will SET the saved food item
 document.getElementById("saveRestaurant-barbtn").addEventListener("click", saveLastSpot)
 
+// pulls a random event from ticketmaster when clicked
 document.getElementById("eventbtn").addEventListener("click", searchEvent);
+// saves the current ticketmaster data displayed when clicked to local storage
 document.getElementById("saveEventbtn").addEventListener("click", saveEvent);
-document.getElementById("recallEventbtn").addEventListener("click", recallSavedEvent);
+// pulls the ticketmaster data from local storage when clicked, replacing the active one

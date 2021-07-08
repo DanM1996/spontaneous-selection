@@ -1,14 +1,14 @@
 var format = "YYYY-MM-DDTHH:mm:ss";
-var ticketmasterEndDate = moment().add(7, 'days').format(format);
-var location = document.getElementById("location");
+var ticketmasterEndDate = moment().add(7, "days").format(format);
+
 
 function getYelpData(searchTerm, searchRadius, searchType){
     var myurl = ""
     if(searchType === "food"){
-        myurl = "http://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "http://api.yelp.com/v3/businesses/search?term=food&limit=50&location=" + searchTerm + "&radius=" + searchRadius;
     }
     if(searchType === "bar"){
-        myurl = "http://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm+ "&radius=" + searchRadius;
+        myurl = "http://api.yelp.com/v3/businesses/search?term=bar&limit=50&location=" + searchTerm + "&radius=" + searchRadius;
     }
     //generate random restraurant (referring to this as "food" cause easier to spell)
     
@@ -143,14 +143,14 @@ function renderRandomBar(randomBar) {
 }
 
 function ticketmasterData(city, radiusInput){
-$.ajax({
-    type: "GET",
-    url: "https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + location + "&endDateTime=" + ticketmasterEndDate + "Z",
-    async: true,
-    dataType: "json",
-    success: function (data) {
+    fetch("https://app.ticketmaster.com/discovery/v2/events.json?size=50&apikey=6XzGGxlIpYQAZnWYPnzYpZDK59vJeJId&city=" + city + "&endDateTime=" + ticketmasterEndDate + "Z")
+        .then(function(data){
+            return data.json();
+        })
+        .then(function(data){
         // set variable to equal length of array in data
         eventLength = data._embedded.events.length;
+        console.log(eventLength);
 
         // run function to get a random number that falls in the length of the array
         function getRandomEventNumber() {
@@ -160,17 +160,9 @@ $.ajax({
         // call function here to display data
         var randomnumber = getRandomEventNumber()
         console.log(data)
-        console.log(data._embedded.events[randomnumber].name);
-        
     
-        renderRandomEvent(data._embedded.events[randomnumber])
-        
-    },
-    error: function (xhr, status, err) {
-        // This time, we do not end up here!
-    }
-});
-
+        renderRandomEvent(data._embedded.events[randomnumber]) 
+    })
 }
 // function that takes the user input for city and radius and has ticketmaster data meet those parameters
 function searchEvent(){
@@ -186,40 +178,59 @@ function searchEvent(){
 
     ticketmasterData(city, radiusInput);
 }
+
 function renderRandomEvent(randomEvent) {
     console.log(randomEvent)
-    var eventEl = $("<div>").addClass("random-event");
+    var eventEl = $("#event-name");
 
-    var eventSpan = $("<span>");
+    eventEl.empty()
+    eventEl.text(randomEvent.name);
     console.log(randomEvent.name);
-    eventSpan.text("Your Randomized Event: " + randomEvent.name);
-    eventEl.append(eventSpan)
 
-    var ticketmasterUrl = $("<a href>")
-    console.log(randomEvent.url)
-    ticketmasterUrl.attr("src", "url")
-    eventEl.append(ticketmasterUrl)
+    var eventTime = $("#event-time");
+    eventTime.empty();
+    eventTime.text(randomEvent.dates.start.localTime)
+    console.log(randomEvent.dates.start.localTime);
+
+    var eventWebLink = $("#event-url");
+    eventWebLink.empty();
+    var eventUrl = $("<a>");
+    console.log(randomEvent.url);
+    eventUrl.text("Ticketmaster Event Link");
+    eventUrl.attr("href", randomEvent.url)
+    eventUrl.attr("id", "website-link")
+    eventWebLink.append(eventUrl);
+
 }
-//Button function
-var displaybtn = function(){
-  var button = document.createElement('button');
-  button.innerHTML = 'Click for Movies';
-  button.onclick = function(){
-  };
-  
-  document.getElementById('Moviebtn').appendChild(button);
-};
 
+function saveEvent(){
+    var name = $("#event-name").text().trim()
+    var time = $("#event-time").text().trim()
+    var link = $("website-link").attr("href")
+    var savedEvent = {
+        name: name,
+        url: link,
+        time: {
+            dates: [time, ""]
+        },
+    }
+    localStorage.setItem("eventSave", JSON.stringify(savedEvent));
+}
 
-// document.getElementById("Moviebtn").addEventListener("click", displaybtn);
+function recallSavedEvent(){
+    var savedEvent = JSON.parse(localStorage.getItem("eventSave"))
+    if (!savedEvent) {
+        savedEvent = {}
+        localStorage.setItem("eventSave", JSON.stringify());
+    }
+    else {
+        renderRandomEvent(savedEvent);
+    }
+}
 
 function displaybtn2(){
     FindFoodDrinks.style.background = "red";
 }
-
-
-// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
-
 
 //when click submit button call submitSearch function; will need to move to bottom of page
 //THIS button is if they want FOOD
@@ -227,6 +238,6 @@ document.getElementById("Restaurantsbtn").addEventListener("click", submitSearch
 //THIS button is if they want BAR
 document.getElementById("Barsbtn").addEventListener("click", submitSearchBar);
 
-// document.getElementById("FindFoodDrinks").addEventListener("click", displaybtn2);
-
-// ticketmasterData();
+document.getElementById("eventbtn").addEventListener("click", searchEvent);
+document.getElementById("saveEventbtn").addEventListener("click", saveEvent);
+document.getElementById("recallEventbtn").addEventListener("click", recallSavedEvent);

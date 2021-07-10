@@ -29,7 +29,8 @@
 
 
 ## Screenshots
-![Example screenshot](./weatherpic.png)
+![image](https://user-images.githubusercontent.com/83778354/125172187-40905480-e186-11eb-9411-71b305c9be67.png)
+
 
 
 

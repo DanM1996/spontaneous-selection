@@ -1,87 +1,177 @@
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/logo-ss.png">
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Spontaneous Selection</title>
 </head>
 <body>
-  <div class="center">
-    <div class="col s12 m7">
-        <div class="card">
-            <div class="card-image">
-                <img src="dating.jpg">
-                <span class="card-title">Dating in Cleveland</span>
-            </div>
-        
-        </div>
+
+  <section class="background-img">
+
+    <div class="background-subtitle">           
+           
+      <span class="span-background opacity">Spontaneous Selection</span>
     </div>
-</div>
- 
 
-
-  <div class="container">
-    <div class="section">
-        <div class="row">
-            <div class="col s12">
-                <p>Dating is stressful enough without coming up with the perfect date
-                    let us take the guess work out of dating and add some sponinatiy to
-                    your life.
-                </p>
-            </div>
-
-            <div class="input-field col s12">
-                <select>
-                    <option value="">Choose your option</option>
-                    <option value="1">Food</option>
-                    <option value="2">Beverage</option>
-                    <option value="3">Other</option>
-                </select>
-            </div>
-        </div>
-    </div>
-</div>
-
-  
-
-  <footer class="page-footer blue">
+  </section>
     <div class="container">
       <div class="row">
-                <div class="col l6 s12">
-                    <h5 class="Black-text">Dating in the Land</h5>
-                    <p class="grey-text text-lighten-4">We take the guess work out of dating, contact us with your
-                        sucess stories to be featured on our Instagram.</p>
-                </div>
-                <div class="col l4 offset-l2 s12">
-                    <h5 class="black-text">Links</h5>
-                    <ul>
-                        <li><a class="black-text text-lighten1" href="#!">Seth Marks</a></li>
-                        <li><a class="black-text text-lighten-3" href="#!">Daniel Martinez</a></li>
-                        <li><a class="black-text text-lighten-3" href="#!">Shakim Eatmon</a></li>
-                        <li><a class="black-text text-lighten-3" href="#!">Stephanie Hage</a></li>
-                    </ul>
-                </div>
-            </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input type="text" id="location" placeholder="Enter a City!">
         </div>
-        <div class="footer-copyright">
+        
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>How far are you willing to travel?</h5>
+      <form action="#">
+        <p class="range-field">
+
+          <input type="range" id="miles" min="0" max="100" />
+
+        </p>
+      </form>
+    </div>
+
+    <div class="divider"></div>
+          <div class="section">
             <div class="container">
-                © 2021 Copyright Text
-                <a class="black-text text-lighten-4 right" href="#!">Terms Of Service</a>
-            </div>
-        </div>
+              <div class="row">
+      
+                  <div class="col s4">
+                    <!-- Promo Content 1 goes here -->
+                      <h5>Restaurants/Bars Selection</h5>
+                      <p>Randomly Select A Restaurant or Bar!</p>
+                    
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 2 goes here -->
+                    
+                        <div class="container">
+                          <div  id="Restaurantsbtn"><p>Click To Select A Restaurant/Bar</p><a class="waves-effect waves-light btn-small">Restaurants</a></div>
+                          <div  id="Barsbtn"><a class="waves-effect waves-light btn-small">Bars</a></div>
+                          <div  id="saveRestaurant-barbtn"><P>Click To  Save Your Current Choice</p><a class="waves-effect waves-light btn-small">Save Restaurants/Bars</a></div>
+                          <div  id="Refreshbtn2"><p>Click to Recall Your Saved Choice</p><a class="waves-effect waves-light btn-small">Recall Saved Restaurant/Bar</a></div>
+                        </div>
+                  
+                  </div>
+                  <div id="rest-div"class="col s4">
+                    <!-- Promo Content 3 goes here -->
+      
+                    <h5>Date Spot Tonight</h5>
+                    <div class="Restaurants-name" id="Restaurants-name"> </div>
+                    <div class="Restaurants-address" id="Restaurants-address"></div>
+                    <div class="Restaurants-website" id="Restaurants-website"></div>
+                  </div>
+      
+                  </div>
+            
+              </div>
+          </div>  
+
+    <main class="Flex-container">
+        
+        <div class="divider"></div>
+          <div class="section">
+            <div class="container">
+              <div class="row">
+      
+                  <div class="col s4">
+                    <!-- Promo Content 1 goes here -->
+                    <h5>Event Selection</h5>
+                    <p>Randomly Select A Event!</p>
+                    
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 2 goes here -->
+                    
+                        <div class="container">
+                           
+                          <div  id="eventbtn"><p>Click To Select A Random Event</p><a class="waves-effect waves-light btn-small">Event</a></div>
+                          <div  id="saveEventbtn"><p>Click To Save Your Last Event</p><a class="waves-effect waves-light btn-small">Save Event</a></div>
+                          <div  id="recallEventbtn"><p>Click To Recall The Saved Event</p><a class="waves-effect waves-light btn-small">Recall Saved Event</a></div>    
+                        </div>
+                  
+                  </div>
+                  <div class="col s4">
+                    <!-- Promo Content 3 goes here -->
+      
+                    <h5>Events Name</h5>
+                    <div class="Event-name" id="event-name"> </div>
+                    <div class="Event-time" id="event-time"></div>
+                    <div class="Event-website" id="Event-website"></div>
+                  </div>
+      
+                
+            
+              </div>
+          </div>
+
+    </main>
+    <div class="container">
+      <div class="divider"></div>
+          
+          
+  </div>
+
+  <div class="container">
+      <div class="row">
+
+          <div class="col s4">
+            <!-- Promo Content 1 goes here -->
+            <h5>About Us</h5>
+              <p>We here at Spontaneous Selection are tired of the"Quarantine Date Nigt" and the "Traditional Date Night".
+                We like the thrill of our new "Spontaneous Date Night" finding something new never felt so easy!
+                With that being said we have created this website
+                so you can enjoy the thrill of a Spontaneous Selection!
+              </p>
+            
+          </div>
+          <div class="col s4">
+            <!-- Promo Content 2 goes here -->
+            <p class="black-text">Made By  :</p>
+            <ul>
+              <li><a class="black-text text-lighten-3" href="https://github.com/DanM1996">❤️ Daniel Martinez</a></li>
+              <li><a class="black-text text-lighten-3" href="https://github.com/hages2">❤️ Stephanie Hage</a></li>
+              <li><a class="black-text text-lighten-3" href="https://github.com/Chubbsdaweb">❤️ Shakim Eatmon</a></li>
+              <li><a class="black-text text-lighten-3" href="https://github.com/Sethmarks216">❤️ Seth Marks</a></li>
+            </ul>
+          </div>
+          <div class="col s4">
+            <!-- Promo Content 3 goes here -->
+            <p class="black-text">Made With :</p>
+            <ul>
+              <li><a class="black-text text-lighten-3" >HTML</a></li>
+              <li><a class="black-text text-lighten-3" >CSS</a></li>
+              <li><a class="black-text text-lighten-3" href="https://materializecss.com/about.html">MaterializeCSS</a></li>
+              <li><a class="black-text text-lighten-3" >Javascript</a></li>
+              <li><a class="black-text text-lighten-3" >Jquery</a></li>
+              <li><a class="black-text text-lighten-3" >Moment.js</a></li>
+            </ul>
+          </div>
+    
+      </div>
+  </div>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
+</body>
 
-  </body>
-  <br>
-  <br>
+
+
+
+
+<scriptgi src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./assets/js/script.js"></script>
 </html>

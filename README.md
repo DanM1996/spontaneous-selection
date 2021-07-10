@@ -1,4 +1,4 @@
-# project-one
+# Spontaneous Selection 
 > We here at Spontaneous Selection are tired of the"Quarantine Date Night" and the "Traditional Date Night". We like the thrill of our new "Spontaneous Date Night" finding something new never felt so easy! With that being said we have created this website so you can enjoy the thrill of a Spontaneous Selection! 
 
 ## Table of Contents
@@ -44,5 +44,5 @@
 * WHEN I click on Recall event/restaurant/bars button
 * THEN I am presented with your saved choice
 
-## website
+## Website
 https://danm1996.github.io/spontaneous-selection/
